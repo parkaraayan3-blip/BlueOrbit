@@ -42,9 +42,9 @@ function App() {
         {/* Navigation */}
         <header className="border-b border-blue-orbit-border/30 luxury-glass sticky top-0 z-50 bg-blue-orbit-warm-white/80">
           <div className="max-w-[1440px] mx-auto px-6 py-4 flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <span className="font-heading font-bold text-xl text-blue-orbit-navy uppercase tracking-widest">Blue Orbit</span>
-            </div>
+            <a href="/" className="flex items-center gap-2 cursor-pointer">
+              <img src="/logo.png" alt="Blue Orbit Logo" className="h-10 object-contain" />
+            </a>
             <nav className="hidden md:flex gap-8 text-sm font-medium">
               {['Services', 'Portfolio', 'Team', 'Process', 'FAQ'].map((item) => (
                 <a key={item} href={`#${item.toLowerCase().replace(' ', '-')}`} className="btn-animate-chars group relative overflow-hidden">
@@ -668,7 +668,7 @@ function App() {
 
         <footer className="py-16 px-6 bg-blue-orbit-navy text-white">
           <div className="max-w-[1440px] mx-auto flex flex-col items-center gap-8 border-t border-white/10 pt-16 text-center">
-            <span className="font-heading font-bold text-4xl tracking-widest uppercase">Blue Orbit</span>
+            <img src="/logo.png" alt="Blue Orbit Logo" className="h-16 object-contain" />
             <span className="text-white/60 tracking-widest uppercase text-sm font-bold">Design. Development. Growth.</span>
             
             <div className="flex gap-6 mt-4">
