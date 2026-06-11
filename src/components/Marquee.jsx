@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, useVelocity, useAnimationFrame, useMotionValue } from 'framer-motion';
 

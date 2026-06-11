@@ -19,7 +19,7 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['var(--font-inter)', 'sans-serif'],
         heading: ['Geist', 'sans-serif'],
       },
       borderRadius: {

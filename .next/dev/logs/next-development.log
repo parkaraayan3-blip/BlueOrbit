@@ -1,0 +1,21 @@
+{"timestamp":"00:00:01.024","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:02.274","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:01:18.859","source":"Browser","level":"WARN","message":"Image with src \"/logo1.png\" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: \"auto\"' or 'height: \"auto\"' to maintain the aspect ratio."}
+{"timestamp":"00:01:18.871","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mImage with src \\\"/logo1.png\\\" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: \\\"auto\\\"' or 'height: \\\"auto\\\"' to maintain the aspect ratio.\\u001b[39m\""}
+{"timestamp":"00:01:18.871","source":"Browser","level":"WARN","message":"\u001b[33mImage with src \"/logo1.png\" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: \"auto\"' or 'height: \"auto\"' to maintain the aspect ratio.\u001b[39m"}
+{"timestamp":"00:01:21.560","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:01:24.676","source":"Browser","level":"WARN","message":"Image with src \"/logo1.png\" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: \"auto\"' or 'height: \"auto\"' to maintain the aspect ratio."}
+{"timestamp":"00:01:24.676","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mImage with src \\\"/logo1.png\\\" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: \\\"auto\\\"' or 'height: \\\"auto\\\"' to maintain the aspect ratio.\\u001b[39m\""}
+{"timestamp":"00:01:24.677","source":"Browser","level":"WARN","message":"\u001b[33mImage with src \"/logo1.png\" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: \"auto\"' or 'height: \"auto\"' to maintain the aspect ratio.\u001b[39m"}
+{"timestamp":"00:01:53.212","source":"Server","level":"LOG","message":"✓ Compiled in 1044ms"}
+{"timestamp":"00:02:01.283","source":"Server","level":"LOG","message":"✓ Compiled in 216ms"}
+{"timestamp":"00:02:23.350","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:19:19.563","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:24:11.517","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:24:37.571","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:24:39.961","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:25:50.855","source":"Server","level":"LOG","message":"✓ Compiled in 432ms"}
+{"timestamp":"00:25:51.460","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:26:00.864","source":"Server","level":"LOG","message":"✓ Compiled in 116ms"}
+{"timestamp":"00:26:10.709","source":"Server","level":"LOG","message":"✓ Compiled in 186ms"}
+{"timestamp":"00:29:57.066","source":"Server","level":"LOG","message":"✓ Compiled in 991ms"}
