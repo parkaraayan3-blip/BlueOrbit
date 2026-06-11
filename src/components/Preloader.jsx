@@ -30,7 +30,7 @@ export const Preloader = ({ onComplete }) => {
       transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
       className="fixed inset-0 z-[999] bg-blue-orbit-navy text-white flex flex-col items-center justify-center overflow-hidden"
     >
-      <div className="absolute inset-0 noise-overlay opacity-10"></div>
+
       
       <div className="flex flex-col items-center justify-center relative z-10 w-full px-6">
         <motion.div 

@@ -30,7 +30,7 @@ function App() {
 
   return (
     <>
-      <div className="absolute inset-0 noise-overlay"></div>
+
       
       <AnimatePresence mode="wait">
         {loading && <Preloader key="preloader" onComplete={() => setLoading(false)} />}
@@ -60,44 +60,138 @@ function App() {
 
         <main>
           {/* 1. Hero Section */}
-          <section className="pt-[180px] pb-[80px] px-6 bg-blue-orbit-warm-white overflow-hidden relative">
+          <section className="pt-[80px] lg:pt-[96px] pb-[80px] px-6 bg-blue-orbit-warm-white overflow-hidden relative">
             <div className="ambient-glow-blue -top-40 -left-40 opacity-20"></div>
-            <div className="max-w-[1440px] mx-auto relative z-10 flex flex-col items-center text-center">
-              <div className="max-w-6xl mb-12">
-                {!loading && (
-                  <AnimatedText 
-                    text="Websites that help clinics, restaurants, startups, and local businesses earn trust and attract more customers." 
-                    className="text-5xl md:text-[6.5rem] font-bold text-blue-orbit-navy leading-[1.05] tracking-tighter"
-                    el="h1"
-                    delay={0.1}
-                  />
-                )}
-              </div>
-              
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: loading ? 0 : 1, y: loading ? 20 : 0 }}
-                transition={{ delay: 1, duration: 1.0, ease: [0.215, 0.61, 0.355, 1] }}
-                className="max-w-3xl mb-16"
-              >
-                <p className="text-xl md:text-2xl text-blue-orbit-slate/80 leading-relaxed">
-                  We are a design and development team focused on helping businesses create a professional online presence through thoughtful design and modern technology.
-                </p>
-              </motion.div>
+            
+            <div className="max-w-[1440px] mx-auto relative z-10">
+              <div className="flex flex-col lg:flex-row items-center gap-16 mb-24">
+                
+                {/* Left Content */}
+                <div className="w-full lg:w-[55%] text-left">
+                  <div className="mb-8 font-bold text-blue-orbit-navy leading-[1.0] tracking-tighter text-[4.5rem] md:text-[6.5rem] lg:text-[7.5rem]">
+                    <div className="overflow-hidden pb-2">
+                      <motion.div initial={{ y: "100%" }} animate={{ y: loading ? "100%" : 0 }} transition={{ delay: 0.1, duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}>
+                        <h1>Rise.</h1>
+                      </motion.div>
+                    </div>
+                    <div className="overflow-hidden pb-2">
+                      <motion.div initial={{ y: "100%" }} animate={{ y: loading ? "100%" : 0 }} transition={{ delay: 0.2, duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}>
+                        <h1>Innovate.</h1>
+                      </motion.div>
+                    </div>
+                    <div className="overflow-hidden pb-2">
+                      <motion.div initial={{ y: "100%" }} animate={{ y: loading ? "100%" : 0 }} transition={{ delay: 0.3, duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }} className="text-blue-orbit-gold">
+                        <h1>Orbit.</h1>
+                      </motion.div>
+                    </div>
+                  </div>
+                  
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: loading ? 0 : 1, y: loading ? 20 : 0 }}
+                    transition={{ delay: 1, duration: 1.0, ease: [0.215, 0.61, 0.355, 1] }}
+                    className="max-w-2xl mb-12"
+                  >
+                    <p className="text-xl md:text-2xl text-blue-orbit-slate/80 leading-relaxed font-medium">
+                      Websites that help clinics, restaurants, startups, and local businesses earn trust and attract more customers.
+                    </p>
+                  </motion.div>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: loading ? 0 : 1, y: loading ? 20 : 0 }}
-                transition={{ delay: 1.2, duration: 1.0, ease: [0.215, 0.61, 0.355, 1] }}
-                className="flex flex-col sm:flex-row gap-6 mb-24"
-              >
-                <HoverButton href="#portfolio" variant="dark" className="px-10 py-5 text-sm tracking-widest uppercase luxury-lift shadow-luxury">
-                  View Our Work
-                </HoverButton>
-                <HoverButton href="#contact" variant="outline" className="px-10 py-5 text-sm tracking-widest uppercase luxury-lift border-blue-orbit-navy text-blue-orbit-navy">
-                  Schedule a Consultation
-                </HoverButton>
-              </motion.div>
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: loading ? 0 : 1, y: loading ? 20 : 0 }}
+                    transition={{ delay: 1.2, duration: 1.0, ease: [0.215, 0.61, 0.355, 1] }}
+                    className="flex flex-col sm:flex-row gap-6"
+                  >
+                    <HoverButton href="#portfolio" variant="dark" className="px-10 py-5 text-sm tracking-widest uppercase luxury-lift shadow-luxury text-center justify-center flex">
+                      View Our Work
+                    </HoverButton>
+                    <HoverButton href="#contact" variant="outline" className="px-10 py-5 text-sm tracking-widest uppercase luxury-lift border-blue-orbit-gold text-blue-orbit-gold text-center justify-center flex bg-transparent hover:bg-blue-orbit-gold/10">
+                      Schedule a Consultation
+                    </HoverButton>
+                  </motion.div>
+                </div>
+
+                {/* Right Animation */}
+                <div className="w-full lg:w-[45%] flex items-center justify-center relative py-10 lg:py-0 lg:-translate-x-12">
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: loading ? 0 : 1, scale: loading ? 0.8 : 1.3 }}
+                    transition={{ delay: 0.5, duration: 1.5, ease: [0.215, 0.61, 0.355, 1] }}
+                    className="relative w-[300px] md:w-[400px] lg:w-[500px] aspect-square flex items-center justify-center"
+                  >
+                    {/* Ambient Center Glow */}
+                    <div className="absolute z-20 w-32 md:w-40 h-32 md:h-40 rounded-full bg-blue-orbit-blue/30 blur-3xl mix-blend-multiply"></div>
+                    
+                    {/* Floating Logo Core */}
+                    <div className="absolute z-20 w-24 md:w-32 h-24 md:h-32 flex items-center justify-center">
+                       <div className="w-full h-full relative z-10 flex items-center justify-center transform translate-x-[8%] -translate-y-[4%] scale-[0.95]">
+                         <motion.img 
+                           src="/favicon.png"
+                           alt="Blue Orbit Logo"
+                           animate={{ scale: [1, 1.05, 1], filter: ['drop-shadow(0 0 10px rgba(26,77,148,0.2))', 'drop-shadow(0 0 20px rgba(26,77,148,0.6))', 'drop-shadow(0 0 10px rgba(26,77,148,0.2))'] }}
+                           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                           className="w-full h-full object-contain drop-shadow-xl"
+                         />
+                       </div>
+                    </div>
+
+                    {/* 3D Planetary Ring System */}
+                    <div className="absolute inset-0 flex items-center justify-center z-10" style={{ transform: 'perspective(1000px) rotateX(55deg) rotateY(-10deg)' }}>
+                      
+                      {/* Inner Fast Ring */}
+                      <motion.div 
+                        animate={{ rotate: 360 }} 
+                        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                        className="absolute w-[160px] md:w-[200px] lg:w-[240px] aspect-square rounded-full border-[1.5px] border-blue-orbit-blue/40"
+                        style={{ transformStyle: 'preserve-3d' }}
+                      >
+                        <div className="absolute bottom-0 left-1/2 w-2 h-2 bg-blue-orbit-gold rounded-full shadow-[0_0_15px_rgba(197,160,89,1)] transform -translate-x-1/2 translate-y-1/2">
+                           <div className="absolute top-1/2 left-full w-12 md:w-20 h-[2px] bg-gradient-to-r from-blue-orbit-gold to-transparent transform -translate-y-1/2 opacity-80 blur-[0.5px]"></div>
+                        </div>
+                      </motion.div>
+
+                      {/* Main Orbit with Comet */}
+                      <motion.div 
+                        animate={{ rotate: 360 }} 
+                        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+                        className="absolute w-[240px] md:w-[340px] lg:w-[440px] aspect-square rounded-full border border-blue-orbit-navy/20"
+                        style={{ transformStyle: 'preserve-3d' }}
+                      >
+                        <div className="absolute top-0 left-1/2 w-3 md:w-4 h-3 md:h-4 bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,1)] transform -translate-x-1/2 -translate-y-1/2">
+                           <div className="absolute inset-[2px] bg-blue-orbit-gold rounded-full"></div>
+                           <div className="absolute top-1/2 right-full w-24 md:w-40 h-[3px] bg-gradient-to-l from-blue-orbit-gold to-transparent transform -translate-y-1/2 opacity-80 blur-[1px]"></div>
+                        </div>
+                      </motion.div>
+                      
+                      {/* Counter-Rotating Dashed Orbit */}
+                      <motion.div 
+                        animate={{ rotate: -360 }} 
+                        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                        className="absolute w-[320px] md:w-[460px] lg:w-[600px] aspect-square rounded-full border-[1.5px] border-blue-orbit-navy/10 border-dashed"
+                        style={{ transformStyle: 'preserve-3d' }}
+                      >
+                        <div className="absolute top-1/2 left-0 w-2 md:w-3 h-2 md:h-3 bg-blue-orbit-gold rounded-full shadow-[0_0_15px_rgba(197,160,89,1)] transform -translate-x-1/2 -translate-y-1/2">
+                           <div className="absolute bottom-full left-1/2 w-[2px] h-16 md:h-28 bg-gradient-to-t from-blue-orbit-gold to-transparent transform -translate-x-1/2 opacity-80 blur-[0.5px]"></div>
+                        </div>
+                      </motion.div>
+
+                      {/* Outer Slow Orbit */}
+                      <motion.div 
+                        animate={{ rotate: 360 }} 
+                        transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+                        className="absolute w-[400px] md:w-[580px] lg:w-[760px] aspect-square rounded-full border border-blue-orbit-navy/5"
+                        style={{ transformStyle: 'preserve-3d' }}
+                      >
+                        <div className="absolute top-1/2 right-0 w-1.5 h-1.5 bg-blue-orbit-gold rounded-full shadow-[0_0_15px_rgba(197,160,89,1)] transform translate-x-1/2 -translate-y-1/2"></div>
+                        <div className="absolute bottom-0 left-1/2 w-1 h-1 bg-blue-orbit-gold rounded-full shadow-[0_0_10px_rgba(197,160,89,1)] transform -translate-x-1/2 translate-y-1/2"></div>
+                      </motion.div>
+
+                    </div>
+                  </motion.div>
+                </div>
+
+              </div>
 
               {/* Immediate Proof */}
               <motion.div 
@@ -112,7 +206,7 @@ function App() {
                   { title: "1 Year Support", desc: "Included post-launch maintenance" },
                   { title: "Pro Photography", desc: "Available for clinics & offices" }
                 ].map((proof, i) => (
-                  <div key={i} className="text-left border-l-2 border-blue-orbit-blue pl-6">
+                  <div key={i} className="text-left border-l-2 border-blue-orbit-gold pl-6">
                     <h4 className="text-xl font-bold text-blue-orbit-navy mb-2">{proof.title}</h4>
                     <p className="text-sm font-medium text-blue-orbit-slate/60 uppercase tracking-widest">{proof.desc}</p>
                   </div>

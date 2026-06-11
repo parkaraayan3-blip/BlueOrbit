@@ -8,13 +8,14 @@ export default {
     extend: {
       colors: {
         'blue-orbit': {
-          navy: '#0A1A2F',
-          blue: '#3A5F94',
-          surface: '#F9F9FE',
-          slate: '#1A1C1F',
-          border: '#E2E8F0',
-          'warm-white': '#F7F4EF',
-          'warm-beige': '#EAE4DB',
+          navy: '#102C57',
+          blue: '#1A4D94',
+          surface: '#F8F5F0',
+          slate: '#19315A',
+          border: '#E2DCD0',
+          'warm-white': '#EBE4D5',
+          'warm-beige': '#D8CCB5',
+          gold: '#C5A059',
         }
       },
       fontFamily: {
