@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, useScroll, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, AnimatePresence, useSpring, useTransform, useMotionValue } from 'framer-motion';
 import { ArrowRight, Search, Smartphone, Camera, Code, CheckCircle2, Clock, Check, X, Twitter, Linkedin, Instagram, Github } from 'lucide-react';
 
 import { Preloader } from '../components/Preloader';
@@ -13,11 +13,29 @@ import { Cursor } from '../components/Cursor';
 import { ParallaxReveal } from '../components/ParallaxReveal';
 import { CursorImageFollower } from '../components/CursorImageFollower';
 import { FAQItem } from '../components/FAQItem';
+import { TechNavbar } from '../components/TechNavbar';
+import { Starfield } from '../components/Starfield';
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
+
+  // 3D Parallax Orbit state
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const handleHeroMouseMove = (e) => {
+    const { innerWidth, innerHeight } = window;
+    const x = (e.clientX / innerWidth) * 2 - 1;
+    const y = (e.clientY / innerHeight) * 2 - 1;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const springConfig = { damping: 25, stiffness: 150 };
+  const orbitRotateX = useSpring(useTransform(mouseY, [-1, 1], [45, 65]), springConfig);
+  const orbitRotateY = useSpring(useTransform(mouseX, [-1, 1], [-25, 5]), springConfig);
   
   useEffect(() => {
     const unsubscribe = scrollY.on("change", (latest) => {
@@ -53,37 +71,12 @@ function App() {
         <Cursor />
         
         {/* Navigation */}
-        <AnimatePresence>
-          {isScrolled && (
-            <motion.header 
-              initial={{ y: -100 }}
-              animate={{ y: 0 }}
-              exit={{ y: -100 }}
-              transition={{ duration: 0.4, ease: [0.215, 0.61, 0.355, 1] }}
-              className="border-b border-blue-orbit-border/30 luxury-glass fixed top-0 left-0 right-0 z-50 bg-blue-orbit-warm-white/90"
-            >
-              <div className="max-w-[1440px] mx-auto px-6 py-2 flex justify-between items-center">
-                <a href="/" className="flex items-center gap-2 cursor-pointer overflow-visible">
-                  <img src={`/logo1.png`} alt="Blue Orbit Logo" className="h-12 md:h-16 w-auto object-contain scale-[1.6] origin-left drop-shadow-sm" />
-                </a>
-                <nav className="hidden md:flex gap-8 text-sm font-medium">
-                  {['Services', 'Portfolio', 'Team', 'Process', 'FAQ'].map((item) => (
-                    <a key={item} href={`#${item.toLowerCase().replace(' ', '-')}`} className="btn-animate-chars group relative overflow-hidden">
-                      <span data-button-animate-chars className="text-blue-orbit-navy uppercase tracking-widest text-xs font-bold">{item}</span>
-                    </a>
-                  ))}
-                </nav>
-                <HoverButton href="#contact" variant="dark" className="text-xs tracking-widest uppercase px-5 py-2.5">
-                  Consultation
-                </HoverButton>
-              </div>
-            </motion.header>
-          )}
-        </AnimatePresence>
+        <TechNavbar isScrolled={isScrolled} />
 
         <main>
           {/* 1. Retro CRT Hero Section */}
-          <section className="min-h-screen pt-[120px] pb-[80px] px-6 bg-blue-orbit-navy overflow-hidden relative flex flex-col justify-center">
+          <section onMouseMove={handleHeroMouseMove} className="min-h-screen pt-[120px] pb-[80px] px-6 bg-blue-orbit-navy overflow-hidden relative flex flex-col justify-center">
+            <Starfield />
             {/* CRT Effects */}
             <div className="scanlines-overlay"></div>
             <div className="crt-vignette"></div>
@@ -155,7 +148,14 @@ function App() {
                     </div>
 
                     {/* 3D Planetary Ring System */}
-                    <div className="absolute inset-0 flex items-center justify-center z-10" style={{ transform: 'perspective(1000px) rotateX(55deg) rotateY(-10deg)' }}>
+                    <motion.div 
+                      className="absolute inset-0 flex items-center justify-center z-10" 
+                      style={{ 
+                        perspective: 1000,
+                        rotateX: orbitRotateX, 
+                        rotateY: orbitRotateY 
+                      }}
+                    >
                       
                       {/* Inner Fast Ring */}
                       <motion.div 
@@ -205,7 +205,7 @@ function App() {
                         <div className="absolute bottom-0 left-1/2 w-1 h-1 bg-blue-orbit-gold rounded-full shadow-[0_0_10px_rgba(197,160,89,1)] transform -translate-x-1/2 translate-y-1/2"></div>
                       </motion.div>
 
-                    </div>
+                    </motion.div>
                   </motion.div>
                 </div>
                 

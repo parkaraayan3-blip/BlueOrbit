@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { Starfield } from './Starfield';
+
 export const Preloader = ({ onComplete }) => {
   const [count, setCount] = useState(0);
 
@@ -32,28 +34,41 @@ export const Preloader = ({ onComplete }) => {
       transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
       className="fixed inset-0 z-[999] bg-blue-orbit-navy text-white flex flex-col items-center justify-center overflow-hidden"
     >
-
-      
-      <div className="flex flex-col items-center justify-center relative z-10 w-full px-6">
+      <Starfield />
+      <div className="scanlines-overlay"></div>
+      <div className="crt-vignette"></div>
+      <div className="flex flex-col items-start justify-center relative z-10 w-full max-w-2xl px-6 font-mono">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-sm font-heading font-bold uppercase tracking-widest mb-8 text-white/50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-sm md:text-lg font-bold uppercase tracking-widest mb-8 text-blue-orbit-gold/80"
         >
-          Blue Orbit Studio
+          <div className="flex items-center gap-4 mb-2">
+            <span className="animate-pulse text-blue-orbit-gold">_</span>
+            <span>SYSTEM.OS v1.0_</span>
+          </div>
+          <div className="text-blue-orbit-gold/60">ESTABLISHING ORBITAL PATH...</div>
+          <div className="text-blue-orbit-gold/60">CALIBRATING THRUSTERS... [OK]</div>
         </motion.div>
         
-        <div className="text-[12rem] md:text-[18rem] font-bold font-heading leading-none tracking-tighter flex items-end">
-          {count}
-          <span className="text-4xl md:text-6xl mb-6 md:mb-12 ml-2">%</span>
+        {/* Retro Chunk Loading Bar */}
+        <div className="w-full mt-4 mb-6 border-4 border-blue-orbit-gold/40 p-1.5 bg-black/40">
+          <div 
+            className="h-8 md:h-12 bg-blue-orbit-gold transition-all duration-75 ease-out shadow-[0_0_15px_rgba(197,160,89,0.8)]"
+            style={{ width: `${count}%` }}
+          />
+        </div>
+        
+        <div className="flex justify-between w-full text-blue-orbit-gold font-bold text-2xl md:text-4xl tracking-widest drop-shadow-[0_0_10px_rgba(197,160,89,0.8)]">
+          <span>LOADING</span>
+          <span>{count}%</span>
         </div>
       </div>
       
       <motion.div 
-        className="absolute bottom-10 left-10 right-10 flex justify-between text-xs font-bold uppercase tracking-widest text-white/50"
+        className="absolute bottom-12 left-0 right-0 text-center text-lg md:text-2xl font-bold uppercase tracking-[0.3em] text-blue-orbit-gold font-mono animate-pulse drop-shadow-[0_0_8px_rgba(197,160,89,0.5)]"
       >
-        <span>Loading Experience</span>
-        <span>Please Wait</span>
+        <span>{count === 100 ? "PRESS START" : "INSERT COIN"}</span>
       </motion.div>
     </motion.div>
   );
