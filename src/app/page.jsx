@@ -351,9 +351,9 @@ function App() {
                 
                 {/* Case Study 1: Dr Meera */}
                 <div className="flex flex-col gap-16">
-                  <div className="grid lg:grid-cols-12 gap-16">
+                  <div className="grid lg:grid-cols-12 gap-16 items-center">
                     <div className="lg:col-span-5">
-                      <div className="sticky top-40">
+                      <div>
                         <span className="text-sm font-heading font-bold tracking-widest text-blue-orbit-blue uppercase mb-6 block border-b border-white/10 pb-4">Industry: Healthcare</span>
                         <h3 className="text-5xl md:text-6xl font-bold mb-12 tracking-tight">Dr. Meera Dermatology Clinic</h3>
                         
@@ -381,39 +381,26 @@ function App() {
                           </div>
                         </div>
 
-                        <a href="#" className="inline-flex items-center gap-4 text-white border-b border-white/30 pb-2 font-bold tracking-widest uppercase text-sm hover:border-white transition-colors group">
+                        <a href="https://dr-meera-clinic.vercel.app/#" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-4 text-white border-b border-white/30 pb-2 font-bold tracking-widest uppercase text-sm hover:border-white transition-colors group">
                           Visit Project <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
                         </a>
                       </div>
                     </div>
                     <div className="lg:col-span-7">
-                      <ParallaxReveal className="w-full aspect-[4/3] rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury mb-8">
-                        <div className="w-full h-full bg-white/5 flex flex-col items-center justify-center p-12 text-center">
-                          <Camera size={48} className="text-white/20 mb-6" />
-                          <span className="text-white/40 font-heading font-bold text-2xl tracking-widest uppercase">Hero Section Screenshot</span>
-                        </div>
+                      <ParallaxReveal className="w-full aspect-[16/10] md:aspect-[16/11] rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury group relative">
+                        <div className="absolute inset-0 z-10 bg-black/10 group-hover:opacity-0 transition-opacity pointer-events-none"></div>
+                        <iframe src="https://dr-meera-clinic.vercel.app/" className="w-[150%] h-[150%] origin-top-left scale-[0.666] border-none pointer-events-none group-hover:pointer-events-auto transition-all duration-700" title="Dr Meera Clinic" />
                       </ParallaxReveal>
-                      <div className="grid grid-cols-2 gap-8">
-                        <ParallaxReveal className="w-full aspect-square rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury">
-                          <div className="w-full h-full bg-white/5 flex items-center justify-center">
-                            <span className="text-white/20 font-heading font-bold text-sm tracking-widest uppercase text-center px-4">Treatment Pages</span>
-                          </div>
-                        </ParallaxReveal>
-                        <ParallaxReveal className="w-full aspect-square rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury">
-                          <div className="w-full h-full bg-white/5 flex items-center justify-center">
-                            <span className="text-white/20 font-heading font-bold text-sm tracking-widest uppercase text-center px-4">Mobile Layout</span>
-                          </div>
-                        </ParallaxReveal>
-                      </div>
+
                     </div>
                   </div>
                 </div>
 
                 {/* Case Study 2: RTR3 */}
-                <div className="flex flex-col gap-16 border-t border-white/10 pt-[200px]">
-                  <div className="grid lg:grid-cols-12 gap-16">
+                <div className="flex flex-col gap-16 border-t border-white/10 pt-[120px] md:pt-[200px]">
+                  <div className="grid lg:grid-cols-12 gap-16 items-center">
                     <div className="lg:col-span-5 lg:order-2">
-                      <div className="sticky top-40">
+                      <div>
                         <span className="text-sm font-heading font-bold tracking-widest text-blue-orbit-blue uppercase mb-6 block border-b border-white/10 pb-4">Industry: Education / Non-Profit</span>
                         <h3 className="text-5xl md:text-6xl font-bold mb-12 tracking-tight">RTR3 — Community Platform</h3>
                         
@@ -447,33 +434,20 @@ function App() {
                       </div>
                     </div>
                     <div className="lg:col-span-7 lg:order-1">
-                      <ParallaxReveal className="w-full aspect-[4/3] rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury mb-8">
-                        <div className="w-full h-full bg-white/5 flex flex-col items-center justify-center p-12 text-center">
-                          <Camera size={48} className="text-white/20 mb-6" />
-                          <span className="text-white/40 font-heading font-bold text-2xl tracking-widest uppercase">Community Portal Screenshot</span>
-                        </div>
+                      <ParallaxReveal className="w-full aspect-[16/10] md:aspect-[16/11] rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury group relative">
+                        <div className="absolute inset-0 z-10 bg-black/10 group-hover:opacity-0 transition-opacity pointer-events-none"></div>
+                        <iframe src="https://rtr3-1-copy.vercel.app/" className="w-[150%] h-[150%] origin-top-left scale-[0.666] border-none pointer-events-none group-hover:pointer-events-auto transition-all duration-700" title="RTR3 Community" />
                       </ParallaxReveal>
-                      <div className="grid grid-cols-2 gap-8">
-                        <ParallaxReveal className="w-full aspect-square rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury">
-                          <div className="w-full h-full bg-white/5 flex items-center justify-center">
-                            <span className="text-white/20 font-heading font-bold text-sm tracking-widest uppercase text-center px-4">Event Showcase</span>
-                          </div>
-                        </ParallaxReveal>
-                        <ParallaxReveal className="w-full aspect-square rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury">
-                          <div className="w-full h-full bg-white/5 flex items-center justify-center">
-                            <span className="text-white/20 font-heading font-bold text-sm tracking-widest uppercase text-center px-4">Leadership Profiles</span>
-                          </div>
-                        </ParallaxReveal>
-                      </div>
+
                     </div>
                   </div>
                 </div>
 
                 {/* Case Study 3: Mirai Forms */}
-                <div className="flex flex-col gap-16 border-t border-white/10 pt-[200px]">
-                  <div className="grid lg:grid-cols-12 gap-16">
+                <div className="flex flex-col gap-16 border-t border-white/10 pt-[120px] md:pt-[200px]">
+                  <div className="grid lg:grid-cols-12 gap-16 items-center">
                     <div className="lg:col-span-5">
-                      <div className="sticky top-40">
+                      <div>
                         <span className="text-sm font-heading font-bold tracking-widest text-blue-orbit-blue uppercase mb-6 block border-b border-white/10 pb-4">Industry: Software / SaaS</span>
                         <h3 className="text-5xl md:text-6xl font-bold mb-12 tracking-tight">Mirai Forms</h3>
                         
@@ -501,30 +475,17 @@ function App() {
                           </div>
                         </div>
 
-                        <a href="#" className="inline-flex items-center gap-4 text-white border-b border-white/30 pb-2 font-bold tracking-widest uppercase text-sm hover:border-white transition-colors group">
+                        <a href="https://mirai-forms-web.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-4 text-white border-b border-white/30 pb-2 font-bold tracking-widest uppercase text-sm hover:border-white transition-colors group">
                           Visit Project <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
                         </a>
                       </div>
                     </div>
                     <div className="lg:col-span-7">
-                      <ParallaxReveal className="w-full aspect-[4/3] rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury mb-8">
-                        <div className="w-full h-full bg-white/5 flex flex-col items-center justify-center p-12 text-center">
-                          <Camera size={48} className="text-white/20 mb-6" />
-                          <span className="text-white/40 font-heading font-bold text-2xl tracking-widest uppercase">Dashboard Application Screenshot</span>
-                        </div>
+                      <ParallaxReveal className="w-full aspect-[16/10] md:aspect-[16/11] rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury group relative">
+                        <div className="absolute inset-0 z-10 bg-black/10 group-hover:opacity-0 transition-opacity pointer-events-none"></div>
+                        <iframe src="https://mirai-forms-web.vercel.app/" className="w-[150%] h-[150%] origin-top-left scale-[0.666] border-none pointer-events-none group-hover:pointer-events-auto transition-all duration-700" title="Mirai Forms" />
                       </ParallaxReveal>
-                      <div className="grid grid-cols-2 gap-8">
-                        <ParallaxReveal className="w-full aspect-square rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury">
-                          <div className="w-full h-full bg-white/5 flex items-center justify-center">
-                            <span className="text-white/20 font-heading font-bold text-sm tracking-widest uppercase text-center px-4">Form Builder</span>
-                          </div>
-                        </ParallaxReveal>
-                        <ParallaxReveal className="w-full aspect-square rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury">
-                          <div className="w-full h-full bg-white/5 flex items-center justify-center">
-                            <span className="text-white/20 font-heading font-bold text-sm tracking-widest uppercase text-center px-4">Analytics View</span>
-                          </div>
-                        </ParallaxReveal>
-                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -552,24 +513,10 @@ function App() {
                   </motion.div>
                 </div>
                 <div className="w-full lg:w-1/2">
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="col-span-2 aspect-video bg-blue-orbit-warm-beige rounded-soft overflow-hidden shadow-luxury flex items-center justify-center border border-blue-orbit-border/50">
-                      <div className="text-center">
-                        <Camera size={32} className="text-blue-orbit-navy/40 mx-auto mb-4" />
-                        <span className="text-blue-orbit-navy/60 font-bold tracking-widest uppercase text-sm">Professional Team Photo</span>
-                      </div>
-                    </div>
-                    <div className="aspect-square bg-blue-orbit-warm-beige rounded-soft overflow-hidden shadow-luxury flex items-center justify-center border border-blue-orbit-border/50">
-                      <div className="text-center">
-                        <Camera size={24} className="text-blue-orbit-navy/40 mx-auto mb-3" />
-                        <span className="text-blue-orbit-navy/60 font-bold tracking-widest uppercase text-xs">Client Shoot</span>
-                      </div>
-                    </div>
-                    <div className="aspect-square bg-blue-orbit-warm-beige rounded-soft overflow-hidden shadow-luxury flex items-center justify-center border border-blue-orbit-border/50">
-                      <div className="text-center">
-                        <Camera size={24} className="text-blue-orbit-navy/40 mx-auto mb-3" />
-                        <span className="text-blue-orbit-navy/60 font-bold tracking-widest uppercase text-xs">Behind The Scenes</span>
-                      </div>
+                  <div className="w-full aspect-[4/3] bg-blue-orbit-warm-beige rounded-soft overflow-hidden shadow-luxury flex items-center justify-center border border-blue-orbit-border/50">
+                    <div className="text-center">
+                      <Camera size={48} className="text-blue-orbit-navy/40 mx-auto mb-6" />
+                      <span className="text-blue-orbit-navy/60 font-bold tracking-widest uppercase text-sm">Professional Team Photo</span>
                     </div>
                   </div>
                 </div>
