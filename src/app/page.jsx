@@ -22,7 +22,7 @@ function App() {
   const { scrollY } = useScroll();
 
   useEffect(() => {
-    console.log("Web3Forms Key loaded in browser:", process.env.NEXT_PUBLIC_WEB3FORMS_KEY);
+    console.log("Web3Forms Key loaded in browser:", process.env.NEXT_PUBLIC_WEB3FORMS_KEY || '1708fbae-37fe-498e-a7ad-07c1603159ca');
   }, []);
 
   // Contact form state
@@ -39,12 +39,9 @@ function App() {
     setFormStatus('submitting');
     setFormError('');
 
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY?.trim();
-
+    let accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY?.trim();
     if (!accessKey || accessKey === 'YOUR_ACCESS_KEY_HERE') {
-      setFormStatus('error');
-      setFormError('Web3Forms Access Key is not loaded or is default. Please check your .env.local file and restart the dev server.');
-      return;
+      accessKey = '1708fbae-37fe-498e-a7ad-07c1603159ca';
     }
 
     try {
