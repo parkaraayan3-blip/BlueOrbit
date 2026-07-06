@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, AnimatePresence, useSpring, useTransform, useMotionValue } from 'framer-motion';
-import { ArrowRight, Search, Smartphone, Camera, Code, CheckCircle2, Clock, Check, X, Twitter, Linkedin, Instagram, Github } from 'lucide-react';
+import { ArrowRight, Search, Smartphone, Camera, Code, CheckCircle2, Clock, Check, X, Twitter, Linkedin, Instagram, Github, Loader2 } from 'lucide-react';
 
 import { Preloader } from '../components/Preloader';
 import { AnimatedText } from '../components/AnimatedText';
@@ -12,7 +12,7 @@ import { Marquee } from '../components/Marquee';
 import { Cursor } from '../components/Cursor';
 import { ParallaxReveal } from '../components/ParallaxReveal';
 import { CursorImageFollower } from '../components/CursorImageFollower';
-import { FAQItem } from '../components/FAQItem';
+import { FAQSection } from '../components/FAQSection';
 import { TechNavbar } from '../components/TechNavbar';
 import { Starfield } from '../components/Starfield';
 
@@ -20,6 +20,49 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
+
+  // Contact form state
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formStatus, setFormStatus] = useState('idle'); // idle | submitting | success | error
+  const [formError, setFormError] = useState('');
+
+  const handleFormChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    setFormError('');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New Consultation Request from ${formData.name}`,
+          from_name: 'Blue Orbit Website',
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setFormStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setFormStatus('error');
+        setFormError(result.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setFormStatus('error');
+      setFormError('Network error. Please check your connection and try again.');
+    }
+  };
 
   // 3D Parallax Orbit state
   const mouseX = useMotionValue(0);
@@ -647,26 +690,7 @@ function App() {
           </section>
 
           {/* 10. FAQ */}
-          <section id="faq" className="py-[160px] px-6 bg-white">
-            <div className="max-w-[1000px] mx-auto">
-              <div className="mb-24 text-center">
-                <AnimatedText text="Frequently Asked Questions" className="text-[5rem] font-bold tracking-tighter text-blue-orbit-navy" el="h2" />
-              </div>
-
-              <div className="flex flex-col">
-                {[
-                  { q: "How long does it take?", a: "Most projects are completed within 4–10 days depending on scope." },
-                  { q: "How much does it cost?", a: "Pricing varies based on requirements. Contact us for a free quote." },
-                  { q: "Do you provide hosting?", a: "Yes. We handle deployment, security, and setup." },
-                  { q: "Do you provide photography?", a: "Yes. Professional photography is available for clinics, restaurants, offices, and local businesses." },
-                  { q: "Do you redesign existing websites?", a: "Absolutely. We can redesign, optimize, and modernize existing websites." },
-                  { q: "Do you offer support?", a: "Every project includes 1 year of support and updates." }
-                ].map((faq, i) => (
-                  <FAQItem key={i} question={faq.q} answer={faq.a} />
-                ))}
-              </div>
-            </div>
-          </section>
+          <FAQSection />
 
           {/* 11. Contact / Final CTA */}
           <section id="contact" className="py-[160px] px-6 bg-blue-orbit-navy text-white relative overflow-hidden">
@@ -703,28 +727,113 @@ function App() {
                 {/* Form */}
                 <div className="w-full lg:w-1/2">
                   <div className="bg-white text-blue-orbit-navy p-16 rounded-soft shadow-luxury luxury-lift h-full flex flex-col justify-center">
-                    <h3 className="text-4xl font-bold mb-4 tracking-tight">Ready To Improve Your Online Presence?</h3>
-                    <p className="text-xl text-blue-orbit-slate/60 mb-12">Fill out the form below and we'll get back to you within 24 hours.</p>
+                    <AnimatePresence mode="wait">
+                      {formStatus === 'success' ? (
+                        <motion.div
+                          key="success"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          className="text-center py-12"
+                        >
+                          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                            <CheckCircle2 size={40} className="text-green-600" />
+                          </div>
+                          <h3 className="text-4xl font-bold mb-4 tracking-tight">Message Sent!</h3>
+                          <p className="text-xl text-blue-orbit-slate/60 mb-8">We'll get back to you within 24 hours.</p>
+                          <button
+                            onClick={() => setFormStatus('idle')}
+                            className="text-blue-orbit-navy font-bold text-lg underline underline-offset-4 hover:text-blue-orbit-blue transition-colors"
+                          >
+                            Send another message
+                          </button>
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          key="form"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                        >
+                          <h3 className="text-4xl font-bold mb-4 tracking-tight">Ready To Improve Your Online Presence?</h3>
+                          <p className="text-xl text-blue-orbit-slate/60 mb-12">Fill out the form below and we'll get back to you within 24 hours.</p>
 
-                    <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
-                      <div className="relative border-b-2 border-blue-orbit-border/50 pb-4 group">
-                        <input type="text" className="w-full bg-transparent text-2xl focus:outline-none placeholder:text-blue-orbit-slate/30 text-blue-orbit-navy relative z-10" placeholder="What is your name?" />
-                        <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-blue-orbit-navy transition-all duration-500 group-focus-within:w-full"></div>
-                      </div>
-                      <div className="relative border-b-2 border-blue-orbit-border/50 pb-4 group pt-4">
-                        <input type="email" className="w-full bg-transparent text-2xl focus:outline-none placeholder:text-blue-orbit-slate/30 text-blue-orbit-navy relative z-10" placeholder="Your email address?" />
-                        <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-blue-orbit-navy transition-all duration-500 group-focus-within:w-full"></div>
-                      </div>
-                      <div className="relative border-b-2 border-blue-orbit-border/50 pb-4 group pt-8">
-                        <textarea className="w-full bg-transparent text-2xl focus:outline-none placeholder:text-blue-orbit-slate/30 text-blue-orbit-navy min-h-[120px] resize-none relative z-10" placeholder="Tell us about your project..."></textarea>
-                        <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-blue-orbit-navy transition-all duration-500 group-focus-within:w-full"></div>
-                      </div>
-                      <div className="pt-8">
-                        <HoverButton variant="dark" className="text-xl font-bold px-12 py-6 w-full text-center flex justify-center uppercase tracking-widest">
-                          Book A Free Consultation
-                        </HoverButton>
-                      </div>
-                    </form>
+                          {formStatus === 'error' && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              className="bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-lg mb-8 flex items-center gap-3"
+                            >
+                              <X size={20} className="shrink-0" />
+                              <p>{formError}</p>
+                            </motion.div>
+                          )}
+
+                          <form className="space-y-10" onSubmit={handleFormSubmit}>
+                            {/* Honeypot spam protection */}
+                            <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+
+                            <div className="relative border-b-2 border-blue-orbit-border/50 pb-4 group">
+                              <input
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleFormChange}
+                                required
+                                className="w-full bg-transparent text-2xl focus:outline-none placeholder:text-blue-orbit-slate/30 text-blue-orbit-navy relative z-10"
+                                placeholder="What is your name?"
+                                disabled={formStatus === 'submitting'}
+                              />
+                              <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-blue-orbit-navy transition-all duration-500 group-focus-within:w-full"></div>
+                            </div>
+                            <div className="relative border-b-2 border-blue-orbit-border/50 pb-4 group pt-4">
+                              <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleFormChange}
+                                required
+                                className="w-full bg-transparent text-2xl focus:outline-none placeholder:text-blue-orbit-slate/30 text-blue-orbit-navy relative z-10"
+                                placeholder="Your email address?"
+                                disabled={formStatus === 'submitting'}
+                              />
+                              <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-blue-orbit-navy transition-all duration-500 group-focus-within:w-full"></div>
+                            </div>
+                            <div className="relative border-b-2 border-blue-orbit-border/50 pb-4 group pt-8">
+                              <textarea
+                                name="message"
+                                value={formData.message}
+                                onChange={handleFormChange}
+                                required
+                                className="w-full bg-transparent text-2xl focus:outline-none placeholder:text-blue-orbit-slate/30 text-blue-orbit-navy min-h-[120px] resize-none relative z-10"
+                                placeholder="Tell us about your project..."
+                                disabled={formStatus === 'submitting'}
+                              ></textarea>
+                              <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-blue-orbit-navy transition-all duration-500 group-focus-within:w-full"></div>
+                            </div>
+                            <div className="pt-8">
+                              <button
+                                type="submit"
+                                disabled={formStatus === 'submitting'}
+                                className="btn-animate-chars rounded-soft px-12 py-6 font-bold text-xl w-full text-center flex justify-center uppercase tracking-widest bg-blue-orbit-navy text-white hover:text-black group relative overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed transition-all"
+                              >
+                                <div className="absolute inset-0 transition-all duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] rounded-soft bg-white w-0 group-hover:w-full z-0"></div>
+                                <span className="relative z-10 flex items-center justify-center gap-3">
+                                  {formStatus === 'submitting' ? (
+                                    <>
+                                      <Loader2 size={24} className="animate-spin" />
+                                      Sending...
+                                    </>
+                                  ) : (
+                                    'Book A Free Consultation'
+                                  )}
+                                </span>
+                              </button>
+                            </div>
+                          </form>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
 
