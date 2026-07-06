@@ -21,6 +21,10 @@ function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
 
+  useEffect(() => {
+    console.log("Web3Forms Key loaded in browser:", process.env.NEXT_PUBLIC_WEB3FORMS_KEY);
+  }, []);
+
   // Contact form state
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [formStatus, setFormStatus] = useState('idle'); // idle | submitting | success | error

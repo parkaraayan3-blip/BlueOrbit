@@ -1,12 +1,17 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { Starfield } from './Starfield';
 
 export const Preloader = ({ onComplete }) => {
   const [count, setCount] = useState(0);
+  const onCompleteRef = useRef(onComplete);
+
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
   useEffect(() => {
     let currentCount = 0;
@@ -19,13 +24,15 @@ export const Preloader = ({ onComplete }) => {
       if (currentCount === 100) {
         clearInterval(interval);
         setTimeout(() => {
-          onComplete();
+          if (onCompleteRef.current) {
+            onCompleteRef.current();
+          }
         }, 800); // Hold at 100% for a moment before completing
       }
     }, 40);
 
     return () => clearInterval(interval);
-  }, [onComplete]);
+  }, []);
 
   return (
     <motion.div
