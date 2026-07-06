@@ -35,12 +35,21 @@ function App() {
     setFormStatus('submitting');
     setFormError('');
 
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    console.log("Submitting Web3Forms with Access Key:", accessKey);
+
+    if (!accessKey) {
+      setFormStatus('error');
+      setFormError('Web3Forms Access Key is not loaded. Please restart your dev server after setting the key in .env.local.');
+      return;
+    }
+
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          access_key: accessKey,
           name: formData.name,
           email: formData.email,
           message: formData.message,
