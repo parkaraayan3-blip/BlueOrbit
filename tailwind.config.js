@@ -19,8 +19,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
-        heading: ['Geist', 'sans-serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+        heading: ['Geist', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         'soft': '0.25rem',

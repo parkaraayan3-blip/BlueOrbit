@@ -726,27 +726,55 @@ function App() {
 
                 {/* Form */}
                 <div className="w-full lg:w-1/2">
-                  <div className="bg-white text-blue-orbit-navy p-16 rounded-soft shadow-luxury luxury-lift h-full flex flex-col justify-center">
+                  <div className="bg-white text-blue-orbit-navy rounded-soft shadow-luxury luxury-lift h-full flex flex-col justify-center relative overflow-hidden">
+                    {/* Gold accent bar */}
+                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-orbit-gold via-amber-400 to-blue-orbit-gold"></div>
+                    
+                    <div className="p-10 md:p-14 lg:p-16">
                     <AnimatePresence mode="wait">
                       {formStatus === 'success' ? (
                         <motion.div
                           key="success"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -20 }}
-                          className="text-center py-12"
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.9 }}
+                          transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+                          className="text-center py-8"
                         >
-                          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8">
-                            <CheckCircle2 size={40} className="text-green-600" />
-                          </div>
-                          <h3 className="text-4xl font-bold mb-4 tracking-tight">Message Sent!</h3>
-                          <p className="text-xl text-blue-orbit-slate/60 mb-8">We'll get back to you within 24 hours.</p>
-                          <button
-                            onClick={() => setFormStatus('idle')}
-                            className="text-blue-orbit-navy font-bold text-lg underline underline-offset-4 hover:text-blue-orbit-blue transition-colors"
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: 'spring', damping: 12, stiffness: 200, delay: 0.1 }}
+                            className="w-24 h-24 bg-gradient-to-br from-green-100 to-emerald-50 rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_8px_30px_rgba(34,197,94,0.2)]"
                           >
+                            <CheckCircle2 size={44} className="text-green-500" />
+                          </motion.div>
+                          <motion.h3
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-4xl font-bold mb-3 tracking-tight"
+                          >
+                            Message Sent!
+                          </motion.h3>
+                          <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className="text-lg text-blue-orbit-slate/50 mb-10"
+                          >
+                            Thank you! We'll get back to you within 24 hours.
+                          </motion.p>
+                          <motion.button
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.4 }}
+                            onClick={() => setFormStatus('idle')}
+                            className="inline-flex items-center gap-2 text-blue-orbit-blue font-bold text-base hover:gap-4 transition-all duration-300"
+                          >
+                            <ArrowRight size={16} className="rotate-180" />
                             Send another message
-                          </button>
+                          </motion.button>
                         </motion.div>
                       ) : (
                         <motion.div
@@ -755,85 +783,121 @@ function App() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -20 }}
                         >
-                          <h3 className="text-4xl font-bold mb-4 tracking-tight">Ready To Improve Your Online Presence?</h3>
-                          <p className="text-xl text-blue-orbit-slate/60 mb-12">Fill out the form below and we'll get back to you within 24 hours.</p>
+                          {/* Header */}
+                          <div className="mb-10">
+                            <span className="inline-block text-xs font-bold tracking-[0.2em] text-blue-orbit-gold uppercase mb-4">Get Started</span>
+                            <h3 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight leading-tight">Ready To Improve Your Online Presence?</h3>
+                            <p className="text-base text-blue-orbit-slate/50">Fill out the form and we'll get back to you within 24 hours.</p>
+                          </div>
 
                           {formStatus === 'error' && (
                             <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: 'auto' }}
-                              className="bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-lg mb-8 flex items-center gap-3"
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className="bg-red-50 border border-red-100 text-red-600 px-5 py-4 rounded-lg mb-8 flex items-start gap-3 text-sm"
                             >
-                              <X size={20} className="shrink-0" />
+                              <X size={18} className="shrink-0 mt-0.5" />
                               <p>{formError}</p>
                             </motion.div>
                           )}
 
-                          <form className="space-y-10" onSubmit={handleFormSubmit}>
+                          <form className="space-y-6" onSubmit={handleFormSubmit}>
                             {/* Honeypot spam protection */}
                             <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
-                            <div className="relative border-b-2 border-blue-orbit-border/50 pb-4 group">
+                            {/* Name Field */}
+                            <div className="relative group">
+                              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-orbit-slate/30 group-focus-within:text-blue-orbit-blue transition-colors duration-300 z-10">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                              </div>
                               <input
                                 type="text"
                                 name="name"
                                 value={formData.name}
                                 onChange={handleFormChange}
                                 required
-                                className="w-full bg-transparent text-2xl focus:outline-none placeholder:text-blue-orbit-slate/30 text-blue-orbit-navy relative z-10"
-                                placeholder="What is your name?"
+                                className="peer w-full bg-blue-orbit-surface/50 border-2 border-transparent focus:border-blue-orbit-blue/30 focus:bg-white rounded-xl text-lg pl-12 pr-5 pt-6 pb-3 focus:outline-none text-blue-orbit-navy placeholder-transparent transition-all duration-300"
+                                placeholder="Name"
                                 disabled={formStatus === 'submitting'}
                               />
-                              <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-blue-orbit-navy transition-all duration-500 group-focus-within:w-full"></div>
+                              <label className="absolute left-12 top-1/2 -translate-y-1/2 text-blue-orbit-slate/40 text-lg pointer-events-none transition-all duration-300 peer-focus:top-3.5 peer-focus:text-xs peer-focus:text-blue-orbit-blue peer-focus:font-semibold peer-focus:tracking-wider peer-focus:translate-y-0 peer-[:not(:placeholder-shown)]:top-3.5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:tracking-wider peer-[:not(:placeholder-shown)]:translate-y-0">
+                                Your Name
+                              </label>
                             </div>
-                            <div className="relative border-b-2 border-blue-orbit-border/50 pb-4 group pt-4">
+
+                            {/* Email Field */}
+                            <div className="relative group">
+                              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-orbit-slate/30 group-focus-within:text-blue-orbit-blue transition-colors duration-300 z-10">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                              </div>
                               <input
                                 type="email"
                                 name="email"
                                 value={formData.email}
                                 onChange={handleFormChange}
                                 required
-                                className="w-full bg-transparent text-2xl focus:outline-none placeholder:text-blue-orbit-slate/30 text-blue-orbit-navy relative z-10"
-                                placeholder="Your email address?"
+                                className="peer w-full bg-blue-orbit-surface/50 border-2 border-transparent focus:border-blue-orbit-blue/30 focus:bg-white rounded-xl text-lg pl-12 pr-5 pt-6 pb-3 focus:outline-none text-blue-orbit-navy placeholder-transparent transition-all duration-300"
+                                placeholder="Email"
                                 disabled={formStatus === 'submitting'}
                               />
-                              <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-blue-orbit-navy transition-all duration-500 group-focus-within:w-full"></div>
+                              <label className="absolute left-12 top-1/2 -translate-y-1/2 text-blue-orbit-slate/40 text-lg pointer-events-none transition-all duration-300 peer-focus:top-3.5 peer-focus:text-xs peer-focus:text-blue-orbit-blue peer-focus:font-semibold peer-focus:tracking-wider peer-focus:translate-y-0 peer-[:not(:placeholder-shown)]:top-3.5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:tracking-wider peer-[:not(:placeholder-shown)]:translate-y-0">
+                                Email Address
+                              </label>
                             </div>
-                            <div className="relative border-b-2 border-blue-orbit-border/50 pb-4 group pt-8">
+
+                            {/* Message Field */}
+                            <div className="relative group">
+                              <div className="absolute left-4 top-5 text-blue-orbit-slate/30 group-focus-within:text-blue-orbit-blue transition-colors duration-300 z-10">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+                              </div>
                               <textarea
                                 name="message"
                                 value={formData.message}
                                 onChange={handleFormChange}
                                 required
-                                className="w-full bg-transparent text-2xl focus:outline-none placeholder:text-blue-orbit-slate/30 text-blue-orbit-navy min-h-[120px] resize-none relative z-10"
-                                placeholder="Tell us about your project..."
+                                className="peer w-full bg-blue-orbit-surface/50 border-2 border-transparent focus:border-blue-orbit-blue/30 focus:bg-white rounded-xl text-lg pl-12 pr-5 pt-7 pb-4 focus:outline-none text-blue-orbit-navy min-h-[140px] resize-none placeholder-transparent transition-all duration-300"
+                                placeholder="Message"
                                 disabled={formStatus === 'submitting'}
                               ></textarea>
-                              <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-blue-orbit-navy transition-all duration-500 group-focus-within:w-full"></div>
+                              <label className="absolute left-12 top-5 text-blue-orbit-slate/40 text-lg pointer-events-none transition-all duration-300 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-orbit-blue peer-focus:font-semibold peer-focus:tracking-wider peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:tracking-wider">
+                                Tell us about your project...
+                              </label>
                             </div>
-                            <div className="pt-8">
+
+                            {/* Submit */}
+                            <div className="pt-2">
                               <button
                                 type="submit"
                                 disabled={formStatus === 'submitting'}
-                                className="btn-animate-chars rounded-soft px-12 py-6 font-bold text-xl w-full text-center flex justify-center uppercase tracking-widest bg-blue-orbit-navy text-white hover:text-black group relative overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed transition-all"
+                                className="w-full rounded-xl px-10 py-5 font-bold text-base text-center uppercase tracking-[0.15em] bg-blue-orbit-navy text-white group relative overflow-hidden disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-[0_10px_40px_rgba(16,44,87,0.35)]"
                               >
-                                <div className="absolute inset-0 transition-all duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] rounded-soft bg-white w-0 group-hover:w-full z-0"></div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-orbit-blue to-blue-orbit-navy opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
                                 <span className="relative z-10 flex items-center justify-center gap-3">
                                   {formStatus === 'submitting' ? (
                                     <>
-                                      <Loader2 size={24} className="animate-spin" />
+                                      <Loader2 size={20} className="animate-spin" />
                                       Sending...
                                     </>
                                   ) : (
-                                    'Book A Free Consultation'
+                                    <>
+                                      Book A Free Consultation
+                                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
+                                    </>
                                   )}
                                 </span>
                               </button>
                             </div>
+
+                            {/* Trust indicator */}
+                            <p className="text-center text-xs text-blue-orbit-slate/35 pt-2 flex items-center justify-center gap-1.5">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                              Your information is secure and never shared.
+                            </p>
                           </form>
                         </motion.div>
                       )}
                     </AnimatePresence>
+                    </div>
                   </div>
                 </div>
 
