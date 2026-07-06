@@ -35,27 +35,26 @@ function App() {
     setFormStatus('submitting');
     setFormError('');
 
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
-    console.log("Submitting Web3Forms with Access Key:", accessKey);
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY?.trim();
 
-    if (!accessKey) {
+    if (!accessKey || accessKey === 'YOUR_ACCESS_KEY_HERE') {
       setFormStatus('error');
-      setFormError('Web3Forms Access Key is not loaded. Please restart your dev server after setting the key in .env.local.');
+      setFormError('Web3Forms Access Key is not loaded or is default. Please check your .env.local file and restart the dev server.');
       return;
     }
 
     try {
+      const formPayload = new FormData();
+      formPayload.append('access_key', accessKey);
+      formPayload.append('name', formData.name);
+      formPayload.append('email', formData.email);
+      formPayload.append('message', formData.message);
+      formPayload.append('subject', `New Consultation Request from ${formData.name}`);
+      formPayload.append('from_name', 'Blue Orbit Website');
+
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: accessKey,
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-          subject: `New Consultation Request from ${formData.name}`,
-          from_name: 'Blue Orbit Website',
-        }),
+        body: formPayload,
       });
 
       const result = await response.json();
