@@ -30,6 +30,11 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_WEB3FORMS_KEY: web3FormsKey,
   },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  poweredByHeader: false,
+  compress: true,
   turbopack: {
     root: process.cwd(),
   },
