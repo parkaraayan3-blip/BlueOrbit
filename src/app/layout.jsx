@@ -27,7 +27,7 @@ export const metadata = {
     images: ['/og-image.jpg'], // Placeholder for actual Twitter Card image
   },
   icons: {
-    icon: '/favicon.png',
+    icon: '/favicon-small.png',
   },
 };
 
