@@ -452,7 +452,7 @@ function App() {
                     <div className="lg:col-span-7">
                       <ParallaxReveal className="w-full aspect-[16/10] md:aspect-[16/11] rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury group relative">
                         <div className="absolute inset-0 z-10 bg-black/10 group-hover:opacity-0 transition-opacity pointer-events-none"></div>
-                        <iframe src="https://dr-meera-clinic.vercel.app/" className="w-[150%] h-[150%] origin-top-left scale-[0.666] border-none pointer-events-none group-hover:pointer-events-auto transition-all duration-700" title="Dr Meera Clinic" />
+                        <iframe src="https://dr-meera-clinic.vercel.app/" loading="lazy" className="w-[150%] h-[150%] origin-top-left scale-[0.666] border-none pointer-events-none group-hover:pointer-events-auto transition-all duration-700" title="Dr Meera Clinic" />
                       </ParallaxReveal>
 
                     </div>
@@ -499,7 +499,7 @@ function App() {
                     <div className="lg:col-span-7 lg:order-1">
                       <ParallaxReveal className="w-full aspect-[16/10] md:aspect-[16/11] rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury group relative">
                         <div className="absolute inset-0 z-10 bg-black/10 group-hover:opacity-0 transition-opacity pointer-events-none"></div>
-                        <iframe src="https://rtr3-1-copy.vercel.app/" className="w-[150%] h-[150%] origin-top-left scale-[0.666] border-none pointer-events-none group-hover:pointer-events-auto transition-all duration-700" title="RTR3 Community" />
+                        <iframe src="https://rtr3-1-copy.vercel.app/" loading="lazy" className="w-[150%] h-[150%] origin-top-left scale-[0.666] border-none pointer-events-none group-hover:pointer-events-auto transition-all duration-700" title="RTR3 Community" />
                       </ParallaxReveal>
 
                     </div>
@@ -546,7 +546,7 @@ function App() {
                     <div className="lg:col-span-7">
                       <ParallaxReveal className="w-full aspect-[16/10] md:aspect-[16/11] rounded-soft bg-white/5 border border-white/10 overflow-hidden shadow-luxury group relative">
                         <div className="absolute inset-0 z-10 bg-black/10 group-hover:opacity-0 transition-opacity pointer-events-none"></div>
-                        <iframe src="https://mirai-forms-web.vercel.app/" className="w-[150%] h-[150%] origin-top-left scale-[0.666] border-none pointer-events-none group-hover:pointer-events-auto transition-all duration-700" title="Mirai Forms" />
+                        <iframe src="https://mirai-forms-web.vercel.app/" loading="lazy" className="w-[150%] h-[150%] origin-top-left scale-[0.666] border-none pointer-events-none group-hover:pointer-events-auto transition-all duration-700" title="Mirai Forms" />
                       </ParallaxReveal>
 
                     </div>
