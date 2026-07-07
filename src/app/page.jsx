@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, AnimatePresence, useSpring, useTransform, useMotionValue } from 'framer-motion';
-import { ArrowRight, Search, Smartphone, Camera, Code, CheckCircle2, Clock, Check, X, Twitter, Linkedin, Instagram, Github, Loader2 } from 'lucide-react';
+import { ArrowRight, Search, Smartphone, Camera, Code, CheckCircle2, Clock, Check, X, Twitter, Linkedin, Instagram, Github, Loader2, Mail, Phone } from 'lucide-react';
 
 import { Preloader } from '../components/Preloader';
 import { AnimatedText } from '../components/AnimatedText';
@@ -736,12 +736,14 @@ function App() {
                     </div>
                   </div>
                   
-                  <div className="space-y-6 text-2xl font-bold tracking-tight">
-                    <a href="mailto:hello@blueorbit.agency" className="btn-animate-chars block">
-                      <span data-button-animate-chars>hello@blueorbit.agency</span>
+                  <div className="flex flex-col sm:flex-row gap-6 lg:gap-10 pt-6 border-t border-white/10 text-xl font-bold tracking-tight">
+                    <a href="mailto:hello@blueorbit.agency" className="inline-flex items-center gap-3 text-white/70 hover:text-white transition-colors duration-300">
+                      <Mail size={22} className="text-blue-orbit-blue" />
+                      <span>hello@blueorbit.agency</span>
                     </a>
-                    <a href="tel:5550000000" className="btn-animate-chars block">
-                      <span data-button-animate-chars>+1 (555) 000-0000</span>
+                    <a href="tel:5550000000" className="inline-flex items-center gap-3 text-white/70 hover:text-white transition-colors duration-300">
+                      <Phone size={22} className="text-blue-orbit-blue" />
+                      <span>+1 (555) 000-0000</span>
                     </a>
                   </div>
                 </div>
