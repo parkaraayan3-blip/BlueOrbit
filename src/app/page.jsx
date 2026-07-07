@@ -713,25 +713,27 @@ function App() {
           <FAQSection />
 
           {/* 11. Contact / Final CTA */}
-          <section id="contact" className="py-[160px] px-6 bg-blue-orbit-navy text-white relative overflow-hidden">
+          <section id="contact" className="min-h-screen py-10 md:py-16 px-6 bg-blue-orbit-navy text-white relative overflow-hidden flex items-center justify-center">
             <div className="ambient-glow-blue bottom-0 right-0 opacity-50"></div>
-            <div className="max-w-[1440px] mx-auto relative z-10">
-              <div className="flex flex-col lg:flex-row gap-24">
+            <div className="max-w-[1440px] mx-auto relative z-10 w-full">
+              <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-stretch">
                 
                 {/* Consultation Details */}
-                <div className="w-full lg:w-1/2">
-                  <span className="text-sm font-heading font-bold tracking-widest text-blue-orbit-blue uppercase mb-6 block">Free Consultation</span>
-                  <AnimatedText text="Let's Build Something Your Customers Will Remember." className="text-[4rem] md:text-[5rem] font-bold mb-12 tracking-tighter leading-none" el="h2" />
-                  
-                  <div className="bg-white/5 border border-white/10 p-10 rounded-soft mb-16">
-                    <h3 className="text-2xl font-bold mb-6">What happens during a consultation?</h3>
-                    <ul className="space-y-4 text-lg text-white/80">
-                      <li className="flex items-center gap-4"><CheckCircle2 size={20} className="text-blue-orbit-blue" /> Business discussion</li>
-                      <li className="flex items-center gap-4"><CheckCircle2 size={20} className="text-blue-orbit-blue" /> Technical requirements</li>
-                      <li className="flex items-center gap-4"><CheckCircle2 size={20} className="text-blue-orbit-blue" /> Website plan & strategy</li>
-                      <li className="flex items-center gap-4"><CheckCircle2 size={20} className="text-blue-orbit-blue" /> Timeline estimation</li>
-                      <li className="flex items-center gap-4"><CheckCircle2 size={20} className="text-blue-orbit-blue" /> Transparent pricing</li>
-                    </ul>
+                <div className="w-full lg:w-1/2 flex flex-col justify-between py-2">
+                          <div>
+                    <span className="text-sm font-heading font-bold tracking-widest text-blue-orbit-blue uppercase mb-4 block">Free Consultation</span>
+                    <AnimatedText text="Let's Build Something Your Customers Will Remember." className="text-[3rem] md:text-[4rem] font-bold mb-6 tracking-tighter leading-none" el="h2" />
+                    
+                    <div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-soft mb-8">
+                      <h3 className="text-xl font-bold mb-4">What happens during a consultation?</h3>
+                      <ul className="space-y-3 text-base md:text-lg text-white/80">
+                        <li className="flex items-center gap-4"><CheckCircle2 size={20} className="text-blue-orbit-blue" /> Business discussion</li>
+                        <li className="flex items-center gap-4"><CheckCircle2 size={20} className="text-blue-orbit-blue" /> Technical requirements</li>
+                        <li className="flex items-center gap-4"><CheckCircle2 size={20} className="text-blue-orbit-blue" /> Website plan & strategy</li>
+                        <li className="flex items-center gap-4"><CheckCircle2 size={20} className="text-blue-orbit-blue" /> Timeline estimation</li>
+                        <li className="flex items-center gap-4"><CheckCircle2 size={20} className="text-blue-orbit-blue" /> Transparent pricing</li>
+                      </ul>
+                    </div>
                   </div>
                   
                   <div className="space-y-6 text-2xl font-bold tracking-tight">
@@ -746,11 +748,11 @@ function App() {
 
                 {/* Form */}
                 <div className="w-full lg:w-1/2">
-                  <div className="bg-white text-blue-orbit-navy rounded-soft shadow-luxury luxury-lift h-full flex flex-col justify-center relative overflow-hidden">
+                  <div className="bg-white text-blue-orbit-navy rounded-soft shadow-luxury h-full flex flex-col justify-center relative overflow-hidden">
                     {/* Gold accent bar */}
                     <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-orbit-gold via-amber-400 to-blue-orbit-gold"></div>
                     
-                    <div className="p-10 md:p-14 lg:p-16">
+                    <div className="p-8 md:p-10 lg:p-12">
                     <AnimatePresence mode="wait">
                       {formStatus === 'success' ? (
                         <motion.div
@@ -804,10 +806,10 @@ function App() {
                           exit={{ opacity: 0, y: -20 }}
                         >
                           {/* Header */}
-                          <div className="mb-10">
-                            <span className="inline-block text-xs font-bold tracking-[0.2em] text-blue-orbit-gold uppercase mb-4">Get Started</span>
-                            <h3 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight leading-tight">Ready To Improve Your Online Presence?</h3>
-                            <p className="text-base text-blue-orbit-slate/50">Fill out the form and we'll get back to you within 24 hours.</p>
+                          <div className="mb-6">
+                            <span className="inline-block text-xs font-bold tracking-[0.2em] text-blue-orbit-gold uppercase mb-2">Get Started</span>
+                            <h3 className="text-2xl md:text-3xl font-bold mb-2 tracking-tight leading-tight">Ready To Improve Your Online Presence?</h3>
+                            <p className="text-sm md:text-base text-blue-orbit-slate/50">Fill out the form and we'll get back to you within 24 hours.</p>
                           </div>
 
                           {formStatus === 'error' && (
@@ -821,7 +823,7 @@ function App() {
                             </motion.div>
                           )}
 
-                          <form className="space-y-6" onSubmit={handleFormSubmit}>
+                          <form className="space-y-4" onSubmit={handleFormSubmit}>
                             {/* Honeypot spam protection */}
                             <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
@@ -836,11 +838,11 @@ function App() {
                                 value={formData.name}
                                 onChange={handleFormChange}
                                 required
-                                className="peer w-full bg-blue-orbit-surface/50 border-2 border-transparent focus:border-blue-orbit-blue/30 focus:bg-white rounded-xl text-lg pl-12 pr-5 pt-6 pb-3 focus:outline-none text-blue-orbit-navy placeholder-transparent transition-all duration-300"
+                                className="peer w-full bg-blue-orbit-surface/50 border-2 border-transparent focus:border-blue-orbit-blue/30 focus:bg-white rounded-xl text-base pl-12 pr-5 pt-5 pb-2 focus:outline-none text-blue-orbit-navy placeholder-transparent transition-all duration-300"
                                 placeholder="Name"
                                 disabled={formStatus === 'submitting'}
                               />
-                              <label className="absolute left-12 top-1/2 -translate-y-1/2 text-blue-orbit-slate/40 text-lg pointer-events-none transition-all duration-300 peer-focus:top-3.5 peer-focus:text-xs peer-focus:text-blue-orbit-blue peer-focus:font-semibold peer-focus:tracking-wider peer-focus:translate-y-0 peer-[:not(:placeholder-shown)]:top-3.5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:tracking-wider peer-[:not(:placeholder-shown)]:translate-y-0">
+                              <label className="absolute left-12 top-1/2 -translate-y-1/2 text-blue-orbit-slate/40 text-base pointer-events-none transition-all duration-300 peer-focus:top-2.5 peer-focus:text-xs peer-focus:text-blue-orbit-blue peer-focus:font-semibold peer-focus:tracking-wider peer-focus:translate-y-0 peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:tracking-wider peer-[:not(:placeholder-shown)]:translate-y-0">
                                 Your Name
                               </label>
                             </div>
@@ -856,11 +858,11 @@ function App() {
                                 value={formData.email}
                                 onChange={handleFormChange}
                                 required
-                                className="peer w-full bg-blue-orbit-surface/50 border-2 border-transparent focus:border-blue-orbit-blue/30 focus:bg-white rounded-xl text-lg pl-12 pr-5 pt-6 pb-3 focus:outline-none text-blue-orbit-navy placeholder-transparent transition-all duration-300"
+                                className="peer w-full bg-blue-orbit-surface/50 border-2 border-transparent focus:border-blue-orbit-blue/30 focus:bg-white rounded-xl text-base pl-12 pr-5 pt-5 pb-2 focus:outline-none text-blue-orbit-navy placeholder-transparent transition-all duration-300"
                                 placeholder="Email"
                                 disabled={formStatus === 'submitting'}
                               />
-                              <label className="absolute left-12 top-1/2 -translate-y-1/2 text-blue-orbit-slate/40 text-lg pointer-events-none transition-all duration-300 peer-focus:top-3.5 peer-focus:text-xs peer-focus:text-blue-orbit-blue peer-focus:font-semibold peer-focus:tracking-wider peer-focus:translate-y-0 peer-[:not(:placeholder-shown)]:top-3.5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:tracking-wider peer-[:not(:placeholder-shown)]:translate-y-0">
+                              <label className="absolute left-12 top-1/2 -translate-y-1/2 text-blue-orbit-slate/40 text-base pointer-events-none transition-all duration-300 peer-focus:top-2.5 peer-focus:text-xs peer-focus:text-blue-orbit-blue peer-focus:font-semibold peer-focus:tracking-wider peer-focus:translate-y-0 peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:tracking-wider peer-[:not(:placeholder-shown)]:translate-y-0">
                                 Email Address
                               </label>
                             </div>
@@ -875,21 +877,21 @@ function App() {
                                 value={formData.message}
                                 onChange={handleFormChange}
                                 required
-                                className="peer w-full bg-blue-orbit-surface/50 border-2 border-transparent focus:border-blue-orbit-blue/30 focus:bg-white rounded-xl text-lg pl-12 pr-5 pt-7 pb-4 focus:outline-none text-blue-orbit-navy min-h-[140px] resize-none placeholder-transparent transition-all duration-300"
+                                className="peer w-full bg-blue-orbit-surface/50 border-2 border-transparent focus:border-blue-orbit-blue/30 focus:bg-white rounded-xl text-base pl-12 pr-5 pt-6 pb-3 focus:outline-none text-blue-orbit-navy min-h-[90px] resize-none placeholder-transparent transition-all duration-300"
                                 placeholder="Message"
                                 disabled={formStatus === 'submitting'}
                               ></textarea>
-                              <label className="absolute left-12 top-5 text-blue-orbit-slate/40 text-lg pointer-events-none transition-all duration-300 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-orbit-blue peer-focus:font-semibold peer-focus:tracking-wider peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:tracking-wider">
+                              <label className="absolute left-12 top-5 text-blue-orbit-slate/40 text-base pointer-events-none transition-all duration-300 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-orbit-blue peer-focus:font-semibold peer-focus:tracking-wider peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:tracking-wider">
                                 Tell us about your project...
                               </label>
                             </div>
 
                             {/* Submit */}
-                            <div className="pt-2">
+                            <div className="pt-1">
                               <button
                                 type="submit"
                                 disabled={formStatus === 'submitting'}
-                                className="w-full rounded-xl px-10 py-5 font-bold text-base text-center uppercase tracking-[0.15em] bg-blue-orbit-navy text-white group relative overflow-hidden disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-[0_10px_40px_rgba(16,44,87,0.35)]"
+                                className="w-full rounded-xl px-8 py-3.5 font-bold text-sm md:text-base text-center uppercase tracking-[0.15em] bg-blue-orbit-navy text-white group relative overflow-hidden disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-[0_10px_40px_rgba(16,44,87,0.35)]"
                               >
                                 <div className="absolute inset-0 bg-gradient-to-r from-blue-orbit-blue to-blue-orbit-navy opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
                                 <span className="relative z-10 flex items-center justify-center gap-3">
