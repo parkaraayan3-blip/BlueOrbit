@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 
 export const Starfield = () => {
   const [stars, setStars] = useState([]);
@@ -24,26 +23,28 @@ export const Starfield = () => {
 
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-60 mix-blend-screen">
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes twinkle {
+          0%, 100% { opacity: var(--star-opacity); transform: scale(1); }
+          50% { opacity: calc(var(--star-opacity) * 0.15); transform: scale(0.5); }
+        }
+        .star-element {
+          animation: twinkle var(--star-duration) ease-in-out var(--star-delay) infinite;
+          will-change: transform, opacity;
+        }
+      `}} />
       {stars.map((star) => (
-        <motion.div
+        <div
           key={star.id}
-          className="absolute bg-white rounded-full shadow-[0_0_5px_rgba(255,255,255,0.5)]"
+          className="star-element absolute bg-white rounded-full shadow-[0_0_5px_rgba(255,255,255,0.5)]"
           style={{
             left: `${star.x}%`,
             top: `${star.y}%`,
-            width: star.size,
-            height: star.size,
-          }}
-          initial={{ opacity: star.opacity }}
-          animate={{
-            opacity: [star.opacity, star.opacity * 0.1, star.opacity],
-            scale: [1, 0.5, 1],
-          }}
-          transition={{
-            duration: star.duration,
-            delay: star.delay,
-            repeat: Infinity,
-            ease: "easeInOut"
+            width: `${star.size}px`,
+            height: `${star.size}px`,
+            '--star-opacity': star.opacity,
+            '--star-duration': `${star.duration}s`,
+            '--star-delay': `${star.delay}s`,
           }}
         />
       ))}

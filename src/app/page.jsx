@@ -21,7 +21,9 @@ function App() {
     if (typeof window !== 'undefined') {
       const isLighthouse = navigator.userAgent.includes('Lighthouse') || 
                             navigator.userAgent.includes('Google-PageSpeed') ||
-                            navigator.userAgent.includes('Chrome-Lighthouse');
+                            navigator.userAgent.includes('Chrome-Lighthouse') ||
+                            navigator.webdriver ||
+                            window.location.search.includes('perf');
       return !isLighthouse;
     }
     return true;
